@@ -1,2 +1,2 @@
-# hackcode
-Taller de música y experimentación sonora con SuperCollider
+# Hackcode
+## Música y experimentación sonora con SuperCollider
