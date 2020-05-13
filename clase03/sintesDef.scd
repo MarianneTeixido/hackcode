@@ -1,6 +1,8 @@
 
 
-s.boot/*
+s.boot
+
+/*
 Pasos para usar el vocoder en Linux y Mac
 1.- Entrar a la videollamda
 2.- Prender jack
@@ -17,15 +19,17 @@ s.boot
 s.meter
 
 (
-SynthDef("vocoder", {|p = 0|
+SynthDef(\vocoder, {|pch =1, amp = 0|
 	var pitch;
-	pitch = PitchShift.ar(SoundIn.ar(0), pitchRatio:1.5);
-Out.ar(0,pitch)  }).add;
+	pitch = PitchShift.ar(SoundIn.ar(0), pitchRatio: pch );
+Out.ar(0,pitch*amp)  }).add;
 )
 
-a = Synth("vocoder", ["p", 1.1]!2) // Lo prenden
-a.free // Lo apagan
-
+a = Synth(\vocoder, [\pch, 0.5, \amp, 1.2]) // Lo prenden
+a.set(\pch, 1.5);
+a.set(\amp, 2.0)
+a.release // Lo apagan
+a.free
 
 
 //Ejemplo de Env.asr
